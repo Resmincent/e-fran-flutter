@@ -8,6 +8,7 @@ Color priceColor = const Color(0xff2C96F1);
 Color bgColor1 = const Color(0xffC7B7A3);
 Color bgColor2 = const Color(0xffE8D8C4);
 Color bgColor3 = const Color.fromARGB(255, 173, 165, 155);
+Color bgColor5 = const Color(0xffECEDEF);
 Color primaryText = const Color(0xffF1F0F2);
 Color lightColor = const Color(0xffECEDEF);
 Color secondaryText = const Color(0xff999999);

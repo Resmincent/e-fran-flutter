@@ -15,7 +15,16 @@ class HeaderProductDetailPage extends StatelessWidget {
             right: defaultMargin,
           ),
           child: Row(
-            children: [],
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              GestureDetector(
+                child: Icon(Icons.chevron_left),
+                onTap: () {
+                  Navigator.pop(context);
+                },
+              ),
+              Icon(Icons.shopping_bag, color: primaryColor)
+            ],
           ),
         )
       ],

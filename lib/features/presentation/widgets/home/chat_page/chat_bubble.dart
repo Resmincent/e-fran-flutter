@@ -2,7 +2,6 @@ import 'package:e_fran/features/presentation/widgets/home/chat_page/detail_chat_
 import 'package:e_fran/features/presentation/widgets/home/chat_page/detail_chat_bubble/button_add_to_cart.dart';
 import 'package:e_fran/utils/theme.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class ChatBubble extends StatelessWidget {
   const ChatBubble({
