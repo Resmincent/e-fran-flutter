@@ -15,6 +15,7 @@ Color secondaryText = const Color(0xff999999);
 Color subTitleColor = const Color(0xff504F5E);
 Color transparentColor = Colors.transparent;
 Color blackColor = const Color(0xff2E2E2E);
+Color alertSuccess = const Color(0xff38ABBE);
 
 TextStyle primaryTextStyle = GoogleFonts.poppins(color: primaryText);
 TextStyle secondaryTextStyle = GoogleFonts.poppins(color: secondaryText);
