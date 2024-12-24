@@ -8,7 +8,9 @@ class CartButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FloatingActionButton(
-      onPressed: () {},
+      onPressed: () {
+        Navigator.pushNamed(context, '/cart');
+      },
       backgroundColor: secondaryColor,
       child: SvgPicture.asset(
         'assets/svg/cart_icon.svg',

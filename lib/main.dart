@@ -1,4 +1,5 @@
 import 'package:e_fran/features/presentation/providers/product_detail/product_detail_provider.dart';
+import 'package:e_fran/features/presentation/screen/cart_page_screen.dart';
 import 'package:e_fran/features/presentation/screen/home/detail_chat_page.dart';
 import 'package:e_fran/features/presentation/screen/home/main_page.dart';
 import 'package:e_fran/features/presentation/screen/sign_in_screen.dart';
@@ -37,6 +38,7 @@ class MyApp extends StatelessWidget {
         '/detail-chat': (context) => const DetailChatPage(),
         '/edit_profile': (context) => const EditProfilePage(),
         '/product': (context) => const ProductDetailPage(),
+        '/cart': (context) => const CartPageScreen(),
       },
     );
   }

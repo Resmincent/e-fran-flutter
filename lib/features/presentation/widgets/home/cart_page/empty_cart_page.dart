@@ -1,8 +1,8 @@
 import 'package:e_fran/utils/theme.dart';
 import 'package:flutter/material.dart';
 
-class EmptyWhislistChat extends StatelessWidget {
-  const EmptyWhislistChat({super.key});
+class EmptyCartPage extends StatelessWidget {
+  const EmptyCartPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -14,14 +14,14 @@ class EmptyWhislistChat extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Image.asset(
-              'assets/img/love_icon.png',
+              'assets/img/cart_icon_empty.png',
               width: 80,
             ),
             const SizedBox(
               height: 20,
             ),
             Text(
-              "You don't have dream shoes?",
+              'Opss! Your Cart is Empty',
               style: primaryTextStyle.copyWith(
                 fontSize: 16,
                 fontWeight: medium,
