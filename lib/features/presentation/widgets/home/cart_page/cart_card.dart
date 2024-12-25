@@ -56,14 +56,14 @@ class CartCard extends StatelessWidget {
                     height: 16,
                   ),
                   const SizedBox(
-                    height: 8,
+                    height: 2,
                   ),
                   Text(
                     '2',
                     style: primaryTextStyle,
                   ),
                   const SizedBox(
-                    height: 8,
+                    height: 2,
                   ),
                   SvgPicture.asset(
                     'assets/svg/kurang_icon.svg',
@@ -74,6 +74,9 @@ class CartCard extends StatelessWidget {
               )
             ],
           ),
+          const SizedBox(
+            height: 12,
+          ),
           Row(
             children: [
               Image.asset(
@@ -82,7 +85,7 @@ class CartCard extends StatelessWidget {
                 height: 12,
               ),
               const SizedBox(
-                width: 8,
+                width: 4,
               ),
               Text(
                 'Remove',

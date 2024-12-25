@@ -7,8 +7,8 @@ class CheckoutCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(top: defaultMargin),
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+      margin: const EdgeInsets.only(top: 12),
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 20),
       decoration: BoxDecoration(
         color: bgColor3,
         borderRadius: BorderRadius.circular(12),
@@ -19,7 +19,7 @@ class CheckoutCard extends StatelessWidget {
             children: [
               Container(
                 width: 60,
-                height: 50,
+                height: 60,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(12),
                   image: const DecorationImage(
@@ -39,6 +39,7 @@ class CheckoutCard extends StatelessWidget {
                       style: primaryTextStyle.copyWith(
                         fontWeight: semiBold,
                       ),
+                      overflow: TextOverflow.ellipsis,
                     ),
                     Text(
                       '\$143,98',
@@ -47,6 +48,15 @@ class CheckoutCard extends StatelessWidget {
                   ],
                 ),
               ),
+              const SizedBox(
+                width: 12,
+              ),
+              Text(
+                '2 items',
+                style: subtitleTestStyle.copyWith(
+                  fontSize: 12,
+                ),
+              )
             ],
           ),
         ],
