@@ -66,11 +66,16 @@ flutter:
   assets:
     - assets/img/button_witslist_blue.png
     - assets/img/cart_icon.png
+    - assets/img/remove_icon.png
+    - assets/img/cart_icon_empty.png
     - assets/img/Chat_iicon.png
     - assets/img/button_chat.png
     - assets/img/exit_button.png
     - assets/img/foto_profile.png
     - assets/img/gatau_apa.png
+    - assets/img/home_icon.png
+    - assets/img/line_icon.png
+    - assets/img/location_icon.png
     - assets/img/icon_success.png
     - assets/img/image_splash.png
     - assets/img/logo_image_shop.png

@@ -2,7 +2,7 @@ import 'package:e_fran/features/presentation/screen/home/chat_page.dart';
 import 'package:e_fran/features/presentation/screen/home/home_page.dart';
 import 'package:e_fran/features/presentation/screen/home/like_page.dart';
 import 'package:e_fran/features/presentation/screen/home/profile_page.dart';
-import 'package:e_fran/features/presentation/widgets/home/cart_button.dart';
+import 'package:e_fran/features/presentation/widgets/home/cart_page/cart_button.dart';
 import 'package:e_fran/features/presentation/widgets/home/custom_button_navigasi.dart';
 import 'package:e_fran/utils/theme.dart';
 import 'package:flutter/material.dart';

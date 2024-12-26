@@ -1,55 +1,165 @@
+import 'package:e_fran/features/presentation/providers/product_detail/product_detail_provider.dart';
 import 'package:e_fran/utils/theme.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class ContentProductDetailPage extends StatelessWidget {
   const ContentProductDetailPage({super.key});
 
-  Widget _buildContentHeader() {
-    return Container(
-      margin: EdgeInsets.only(
-        top: defaultMargin,
-        left: defaultMargin,
-        right: defaultMargin,
+  void _addWishListSnackBar(BuildContext context) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        backgroundColor: alertSuccess,
+        duration: const Duration(seconds: 2),
+        content: const Text(
+          'Has been added to the Wishlist',
+          textAlign: TextAlign.center,
+        ),
       ),
-      child: Row(
-        children: [
-          Expanded(
+    );
+  }
+
+  void _removeWishListSnackBar(BuildContext context) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        backgroundColor: alertColor,
+        duration: const Duration(seconds: 2),
+        content: const Text(
+          'Has been removed from the Wishlist',
+          textAlign: TextAlign.center,
+        ),
+      ),
+    );
+  }
+
+  Future<void> _showAlertSuccess(BuildContext context) async {
+    return showDialog(
+      context: context,
+      builder: (BuildContext context) => Container(
+        width: MediaQuery.of(context).size.width - (2 * defaultMargin),
+        child: AlertDialog(
+          backgroundColor: primaryColor,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(30),
+          ),
+          content: SingleChildScrollView(
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Icon(
+                    Icons.close,
+                    color: primaryText,
+                  ),
+                ),
+                Image.asset(
+                  'assets/img/icon_success.png',
+                  width: 100,
+                  height: 100,
+                ),
+                const SizedBox(
+                  height: 12,
+                ),
                 Text(
-                  'TERREX URBAN LOW',
+                  'Hurray :)',
                   style: primaryTextStyle.copyWith(
                     fontSize: 18,
                     fontWeight: semiBold,
                   ),
-                  overflow: TextOverflow.ellipsis,
-                  maxLines: 1,
                 ),
-                const SizedBox(height: 4),
+                const SizedBox(
+                  height: 12,
+                ),
                 Text(
-                  'Hiking',
-                  style: primaryTextStyle.copyWith(
-                    fontSize: 12,
+                  'Item added successfully',
+                  style: subtitleTestStyle.copyWith(
+                    fontWeight: bold,
                   ),
-                )
+                ),
+                Container(
+                  margin: const EdgeInsets.only(top: 20),
+                  width: 154,
+                  height: 44,
+                  child: TextButton(
+                    onPressed: () {},
+                    style: TextButton.styleFrom(
+                        backgroundColor: alertSuccess,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(
+                            12,
+                          ),
+                        )),
+                    child: Text('View My Cart',
+                        style: primaryTextStyle.copyWith(
+                          fontSize: 16,
+                          fontWeight: medium,
+                        )),
+                  ),
+                ),
               ],
             ),
           ),
-          const SizedBox(width: 16),
-          GestureDetector(
-            onTap: () {
-              // Handle wishlist tap
-            },
-            child: Image.asset(
-              'assets/img/wistlist_image.png',
-              width: 46,
-              fit: BoxFit.cover,
-            ),
-          ),
-        ],
+        ),
       ),
     );
+  }
+
+  Widget _buildContentHeader() {
+    return Consumer<ProductDetailProvider>(
+        builder: (context, productDetail, _) {
+      return Container(
+        margin: EdgeInsets.only(
+          top: defaultMargin,
+          left: defaultMargin,
+          right: defaultMargin,
+        ),
+        child: Row(
+          children: [
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'TERREX URBAN LOW',
+                    style: primaryTextStyle.copyWith(
+                      fontSize: 18,
+                      fontWeight: semiBold,
+                    ),
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 1,
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    'Hiking',
+                    style: primaryTextStyle.copyWith(
+                      fontSize: 12,
+                    ),
+                  )
+                ],
+              ),
+            ),
+            const SizedBox(width: 16),
+            GestureDetector(
+              onTap: () {
+                productDetail.toggleWishlist();
+                if (productDetail.isWishlist) {
+                  _addWishListSnackBar(context);
+                } else {
+                  _removeWishListSnackBar(context);
+                }
+              },
+              child: Image.asset(
+                productDetail.isWishlist
+                    ? 'assets/img/button_witslist_blue.png'
+                    : 'assets/img/wistlist_image.png',
+                width: 46,
+                fit: BoxFit.cover,
+              ),
+            ),
+          ],
+        ),
+      );
+    });
   }
 
   Widget _buildPriceTag() {
@@ -168,7 +278,7 @@ class ContentProductDetailPage extends StatelessWidget {
     );
   }
 
-  Widget _buildButtonChatAndAddtoCart() {
+  Widget _buildButtonChatAndAddtoCart(BuildContext context) {
     return Container(
       width: double.infinity,
       margin: EdgeInsets.only(
@@ -178,12 +288,17 @@ class ContentProductDetailPage extends StatelessWidget {
       ),
       child: Row(
         children: [
-          Container(
-            width: 54,
-            height: 54,
-            decoration: const BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage('assets/img/button_chat.png'),
+          GestureDetector(
+            onTap: () {
+              Navigator.pushNamed(context, '/detail-chat');
+            },
+            child: Container(
+              width: 54,
+              height: 54,
+              decoration: const BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage('assets/img/button_chat.png'),
+                ),
               ),
             ),
           ),
@@ -194,7 +309,9 @@ class ContentProductDetailPage extends StatelessWidget {
             child: Container(
               height: 54,
               child: TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  _showAlertSuccess(context);
+                },
                 style: TextButton.styleFrom(
                     backgroundColor: primaryColor,
                     shape: RoundedRectangleBorder(
@@ -235,7 +352,7 @@ class ContentProductDetailPage extends StatelessWidget {
             _buildDescrption(),
             _buildFamiliarShoes(),
             const SizedBox(height: 30),
-            _buildButtonChatAndAddtoCart(),
+            _buildButtonChatAndAddtoCart(context),
             const SizedBox(height: 30),
           ],
         ),
