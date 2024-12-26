@@ -18,8 +18,10 @@ void main() {
     MultiProvider(
       providers: [
         ChangeNotifierProvider(
-          create: (context) => AuthProvider(),
           create: (context) => ProductDetailProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => AuthProvider(),
         ),
       ],
       child: const MyApp(),
