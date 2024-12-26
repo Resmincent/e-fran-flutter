@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 class InputFullnameSignUp extends StatelessWidget {
-  const InputFullnameSignUp({super.key});
+  final TextEditingController controller;
+
+  const InputFullnameSignUp({super.key, required this.controller});
 
   @override
   Widget build(BuildContext context) {
@@ -41,6 +43,7 @@ class InputFullnameSignUp extends StatelessWidget {
                   ),
                   Expanded(
                     child: TextFormField(
+                      controller: controller,
                       style: subtitleTestStyle,
                       decoration: InputDecoration.collapsed(
                         hintText: 'Your Full Name',

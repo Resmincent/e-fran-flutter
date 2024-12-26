@@ -1,3 +1,4 @@
+import 'package:e_fran/features/presentation/providers/auth/auth_provider.dart';
 import 'package:e_fran/features/presentation/screen/home/detail_chat_page.dart';
 import 'package:e_fran/features/presentation/screen/home/main_page.dart';
 import 'package:e_fran/features/presentation/screen/sign_in_screen.dart';
@@ -6,9 +7,19 @@ import 'package:e_fran/features/presentation/screen/splash_screen.dart';
 import 'package:e_fran/features/presentation/widgets/home/home_page/detail_product/product_detail_page.dart';
 import 'package:e_fran/features/presentation/widgets/home/profile_page.dart/edit_profile/edit_profile_page.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (context) => AuthProvider(),
+        ),
+      ],
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {

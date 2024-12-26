@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 class InputPasswordSignUp extends StatelessWidget {
-  const InputPasswordSignUp({super.key});
+  final TextEditingController controller;
+
+  const InputPasswordSignUp({super.key, required this.controller});
 
   @override
   Widget build(BuildContext context) {
@@ -42,6 +44,7 @@ class InputPasswordSignUp extends StatelessWidget {
                   Expanded(
                     child: TextFormField(
                       obscureText: true,
+                      controller: controller,
                       style: subtitleTestStyle,
                       decoration: InputDecoration.collapsed(
                         hintText: 'Your Password',
