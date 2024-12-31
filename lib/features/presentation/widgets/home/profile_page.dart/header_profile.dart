@@ -1,11 +1,16 @@
+import 'package:e_fran/features/models/user_model.dart';
+import 'package:e_fran/features/presentation/providers/auth_provider.dart';
 import 'package:e_fran/utils/theme.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class HeaderProfile extends StatelessWidget {
   const HeaderProfile({super.key});
 
   @override
   Widget build(BuildContext context) {
+    AuthProvider authProvider = Provider.of<AuthProvider>(context);
+    UserModel user = authProvider.user;
     return AppBar(
       backgroundColor: bgColor3,
       automaticallyImplyLeading: false,
@@ -16,12 +21,27 @@ class HeaderProfile extends StatelessWidget {
           child: Row(
             children: [
               ClipOval(
-                child: Container(
-                  decoration: BoxDecoration(color: primaryColor),
-                  child: Image.asset(
-                    'assets/img/foto_profile.png',
-                    width: 64,
-                  ),
+                child: Image.network(
+                  user.profilePhotoUrl,
+                  width: 64,
+                  errorBuilder: (context, error, stackTrace) {
+                    return Container(
+                      width: 64,
+                      height: 64,
+                      color: primaryColor,
+                      child: const Icon(Icons.person, size: 32),
+                    );
+                  },
+                  loadingBuilder: (context, child, loadingProgress) {
+                    if (loadingProgress == null) return child;
+                    return Container(
+                      width: 64,
+                      height: 64,
+                      child: const Center(
+                        child: CircularProgressIndicator(),
+                      ),
+                    );
+                  },
                 ),
               ),
               const SizedBox(
@@ -32,14 +52,14 @@ class HeaderProfile extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Hallo, Ifran',
+                      'Hallo, ${user.name}',
                       style: primaryTextStyle.copyWith(
                         fontSize: 24,
                         fontWeight: semiBold,
                       ),
                     ),
                     Text(
-                      '@ifranhh',
+                      '@${user.username}',
                       style: subtitleTestStyle.copyWith(
                         fontSize: 16,
                       ),

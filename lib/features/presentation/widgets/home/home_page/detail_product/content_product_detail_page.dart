@@ -1,4 +1,4 @@
-import 'package:e_fran/features/presentation/providers/product_detail/product_detail_provider.dart';
+import 'package:e_fran/features/presentation/providers/product_detail_provider.dart';
 import 'package:e_fran/utils/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';

@@ -50,6 +50,38 @@ class AuthService {
     }
   }
 
+  Future<UserModel> login({
+    required String email,
+    required String password,
+  }) async {
+    final url = Uri.parse('$baseUrlLocal/login');
+    final headers = {'Content-Type': 'application/json'};
+    final body = jsonEncode({
+      'email': email,
+      'password': password,
+    });
+
+    final response = await client.post(
+      url,
+      headers: headers,
+      body: body,
+    );
+
+    print('Response status: ${response.statusCode}');
+    print('Response body: ${response.body}');
+
+    if (response.statusCode == 200) {
+      var data = jsonDecode(response.body)['data'];
+      UserModel user = UserModel.fromJson(data['user']);
+      user.token = 'Bearer ' + data['access_token'];
+
+      return user;
+    } else {
+      // Tampilkan pesan error detail ke console
+      throw Exception('Error ${response.statusCode}: ${response.body}');
+    }
+  }
+
   void dispose() {
     client.close();
   }

@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 class InputEmailAddressSignIn extends StatelessWidget {
-  const InputEmailAddressSignIn({super.key});
+  final TextEditingController controller;
+
+  const InputEmailAddressSignIn({super.key, required this.controller});
 
   @override
   Widget build(BuildContext context) {
@@ -41,6 +43,7 @@ class InputEmailAddressSignIn extends StatelessWidget {
                   ),
                   Expanded(
                     child: TextFormField(
+                      controller: controller,
                       style: subtitleTestStyle,
                       decoration: InputDecoration.collapsed(
                         hintText: 'Your Email Address',

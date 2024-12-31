@@ -1,11 +1,16 @@
+import 'package:e_fran/features/models/user_model.dart';
+import 'package:e_fran/features/presentation/providers/auth_provider.dart';
 import 'package:e_fran/utils/theme.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class HeaderHomePage extends StatelessWidget {
   const HeaderHomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    AuthProvider authProvider = Provider.of<AuthProvider>(context);
+    UserModel user = authProvider.user;
     return Container(
       margin: EdgeInsets.only(
         top: defaultMargin,
@@ -19,14 +24,14 @@ class HeaderHomePage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Hallo, Ifran Hilmi Azhara',
+                  'Hallo, ${user.name}',
                   style: primaryTextStyle.copyWith(
                     fontSize: 24,
                     fontWeight: semiBold,
                   ),
                 ),
                 Text(
-                  '@ifran',
+                  '@${user.username}',
                   style: subtitleTestStyle.copyWith(fontSize: 16),
                 )
               ],
@@ -38,11 +43,11 @@ class HeaderHomePage extends StatelessWidget {
             decoration: BoxDecoration(
               color: primaryColor,
               shape: BoxShape.circle,
-              image: const DecorationImage(
-                image: AssetImage('assets/img/foto_profile.png'),
+              image: DecorationImage(
+                image: NetworkImage(user.profilePhotoUrl),
               ),
             ),
-          )
+          ),
         ],
       ),
     );

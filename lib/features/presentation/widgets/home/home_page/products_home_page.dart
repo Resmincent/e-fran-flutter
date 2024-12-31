@@ -1,8 +1,11 @@
+import 'package:e_fran/features/models/product_model.dart';
 import 'package:e_fran/utils/theme.dart';
 import 'package:flutter/material.dart';
 
 class ProductsHomePage extends StatelessWidget {
-  const ProductsHomePage({super.key});
+  final ProductModel product;
+
+  const ProductsHomePage({super.key, required this.product});
 
   @override
   Widget build(BuildContext context) {
@@ -28,12 +31,28 @@ class ProductsHomePage extends StatelessWidget {
             ),
             Padding(
               padding: const EdgeInsets.all(5.0),
-              child: Image.asset(
-                'assets/img/sepatu.png',
-                height: 150,
-                width: 215,
-                fit: BoxFit.cover,
-              ),
+              child: product.galleries?.isNotEmpty == true &&
+                      product.galleries![0].url != null
+                  ? Image.network(
+                      product.galleries![0].url!,
+                      height: 150,
+                      width: 215,
+                      fit: BoxFit.cover,
+                      errorBuilder: (context, error, stackTrace) {
+                        return Container(
+                          height: 150,
+                          width: 215,
+                          color: Colors.grey,
+                          child: const Icon(Icons.broken_image),
+                        );
+                      },
+                    )
+                  : Container(
+                      height: 150,
+                      width: 215,
+                      color: Colors.grey,
+                      child: const Icon(Icons.image_not_supported),
+                    ),
             ),
             Container(
               margin: const EdgeInsets.symmetric(
@@ -43,14 +62,14 @@ class ProductsHomePage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Hiking',
+                    product.category!.name!,
                     style: subtitleTestStyle.copyWith(fontSize: 12),
                   ),
                   const SizedBox(
                     height: 6,
                   ),
                   Text(
-                    'COURT VISION 2.0',
+                    product.name!,
                     style: blackTextStyle.copyWith(
                       fontSize: 18,
                       fontWeight: semiBold,
@@ -61,7 +80,7 @@ class ProductsHomePage extends StatelessWidget {
                     height: 6,
                   ),
                   Text(
-                    'Rp.1.200.000',
+                    '${product.price}',
                     style: priceTextStyle.copyWith(
                       fontSize: 14,
                       fontWeight: medium,

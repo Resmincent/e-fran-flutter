@@ -3,14 +3,14 @@ class UserModel {
   String? username;
   String? name;
   String? email;
-  String? profilePhotoUrl;
+  late String profilePhotoUrl;
   String? token;
 
   UserModel({
     this.id,
     this.email,
     this.name,
-    this.profilePhotoUrl,
+    required this.profilePhotoUrl,
     this.token,
     this.username,
   });
@@ -28,7 +28,7 @@ class UserModel {
     return {
       'id': id,
       'name': name,
-      'usename': username,
+      'username': username,
       'email': email,
       'profile_photo_url': profilePhotoUrl,
       'token': token,

@@ -1,4 +1,4 @@
-import 'package:e_fran/features/presentation/providers/auth/auth_provider.dart';
+import 'package:e_fran/features/presentation/providers/auth_provider.dart';
 import 'package:e_fran/features/presentation/widgets/sign_up/footer_sign_up.dart';
 import 'package:e_fran/features/presentation/widgets/sign_up/header_sign_up.dart';
 import 'package:e_fran/features/presentation/widgets/sign_up/input_email_sign_up.dart';

@@ -1,5 +1,6 @@
-import 'package:e_fran/features/presentation/providers/auth/auth_provider.dart';
-import 'package:e_fran/features/presentation/providers/product_detail/product_detail_provider.dart';
+import 'package:e_fran/features/presentation/providers/auth_provider.dart';
+import 'package:e_fran/features/presentation/providers/product_detail_provider.dart';
+import 'package:e_fran/features/presentation/providers/product_provider.dart';
 import 'package:e_fran/features/presentation/screen/cart_page_screen.dart';
 import 'package:e_fran/features/presentation/screen/checkout_detail_screen.dart';
 import 'package:e_fran/features/presentation/screen/home/detail_chat_page.dart';
@@ -22,6 +23,9 @@ void main() {
         ),
         ChangeNotifierProvider(
           create: (context) => AuthProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => ProductProvider(),
         ),
       ],
       child: const MyApp(),

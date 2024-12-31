@@ -1,11 +1,16 @@
+import 'package:e_fran/features/models/user_model.dart';
+import 'package:e_fran/features/presentation/providers/auth_provider.dart';
 import 'package:e_fran/utils/theme.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class ContentEditProfile extends StatelessWidget {
   const ContentEditProfile({super.key});
 
   @override
   Widget build(BuildContext context) {
+    AuthProvider authProvider = Provider.of<AuthProvider>(context);
+    UserModel user = authProvider.user;
     //Field input name
     Widget nameInput() {
       return Container(
@@ -20,7 +25,7 @@ class ContentEditProfile extends StatelessWidget {
             TextFormField(
               style: primaryTextStyle,
               decoration: InputDecoration(
-                hintText: 'Ifran Hilmi Azhara',
+                hintText: user.name,
                 hintStyle: primaryTextStyle,
                 enabledBorder: UnderlineInputBorder(
                   borderSide: BorderSide(
@@ -47,7 +52,7 @@ class ContentEditProfile extends StatelessWidget {
             ),
             TextFormField(
               decoration: InputDecoration(
-                hintText: '@example',
+                hintText: "@${user.username}",
                 hintStyle: primaryTextStyle,
                 enabledBorder: UnderlineInputBorder(
                   borderSide: BorderSide(
@@ -74,7 +79,7 @@ class ContentEditProfile extends StatelessWidget {
             ),
             TextFormField(
               decoration: InputDecoration(
-                hintText: '@vrann@example.com',
+                hintText: user.email,
                 hintStyle: primaryTextStyle,
                 enabledBorder: UnderlineInputBorder(
                   borderSide: BorderSide(
@@ -103,8 +108,9 @@ class ContentEditProfile extends StatelessWidget {
             decoration: BoxDecoration(
               color: primaryColor,
               shape: BoxShape.circle,
-              image: const DecorationImage(
-                image: AssetImage('assets/img/foto_profile.png'),
+              image: DecorationImage(
+                fit: BoxFit.fill,
+                image: NetworkImage(user.profilePhotoUrl),
               ),
             ),
           ),
