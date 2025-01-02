@@ -75,12 +75,13 @@ class ProductsHomePage extends StatelessWidget {
                       fontWeight: semiBold,
                     ),
                     overflow: TextOverflow.ellipsis,
+                    maxLines: 1,
                   ),
                   const SizedBox(
                     height: 6,
                   ),
                   Text(
-                    '${product.price}',
+                    '\$${product.price}',
                     style: priceTextStyle.copyWith(
                       fontSize: 14,
                       fontWeight: medium,

@@ -1,8 +1,11 @@
+import 'package:e_fran/features/models/product_model.dart';
 import 'package:e_fran/utils/theme.dart';
 import 'package:flutter/material.dart';
 
 class ProductArrivalTile extends StatelessWidget {
-  const ProductArrivalTile({super.key});
+  final ProductModel product;
+
+  const ProductArrivalTile({super.key, required this.product});
 
   @override
   Widget build(BuildContext context) {
@@ -20,12 +23,28 @@ class ProductArrivalTile extends StatelessWidget {
           children: [
             ClipRRect(
               borderRadius: BorderRadius.circular(20),
-              child: Image.asset(
-                'assets/img/sepatu_1.png',
-                width: 120,
-                height: 120,
-                fit: BoxFit.cover,
-              ),
+              child: product.galleries?.isNotEmpty == true &&
+                      product.galleries![0].url != null
+                  ? Image.network(
+                      product.galleries![0].url!,
+                      height: 150,
+                      width: 215,
+                      fit: BoxFit.cover,
+                      errorBuilder: (context, error, stackTrace) {
+                        return Container(
+                          height: 150,
+                          width: 215,
+                          color: Colors.grey,
+                          child: const Icon(Icons.broken_image),
+                        );
+                      },
+                    )
+                  : Container(
+                      height: 150,
+                      width: 215,
+                      color: Colors.grey,
+                      child: const Icon(Icons.image_not_supported),
+                    ),
             ),
             const SizedBox(
               width: 12,
@@ -35,7 +54,7 @@ class ProductArrivalTile extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Football',
+                    product.category!.name!,
                     style: subtitleTestStyle.copyWith(
                       fontSize: 12,
                     ),
@@ -44,7 +63,7 @@ class ProductArrivalTile extends StatelessWidget {
                     height: 6,
                   ),
                   Text(
-                    'Predator 20,3 Firm Ground ',
+                    product.name!,
                     style: primaryTextStyle.copyWith(
                       fontSize: 16,
                       fontWeight: semiBold,
@@ -54,7 +73,7 @@ class ProductArrivalTile extends StatelessWidget {
                     height: 6,
                   ),
                   Text(
-                    'Rp.3.000.00',
+                    '\$${product.price}',
                     style: priceTextStyle.copyWith(
                       fontWeight: medium,
                     ),

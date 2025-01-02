@@ -15,7 +15,7 @@ class CategoryService {
   }) : client = client ?? http.Client();
 
   Future<List<CategoryModel>> getCategory() async {
-    final url = Uri.parse('$baseUrlLocal/');
+    final url = Uri.parse('$baseUrlLocal/categories');
     final headers = {'Content-Type': 'application/json'};
 
     final response = await client.get(
@@ -37,7 +37,7 @@ class CategoryService {
 
       return categories;
     } else {
-      throw Exception('Product gagal terload');
+      throw Exception('Product Category gagal terload');
     }
   }
 }

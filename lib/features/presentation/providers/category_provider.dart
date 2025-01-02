@@ -1,4 +1,5 @@
 import 'package:e_fran/features/models/category_model.dart';
+import 'package:e_fran/features/services/category_service.dart';
 import 'package:flutter/material.dart';
 
 class CategoryProvider with ChangeNotifier {
@@ -11,5 +12,12 @@ class CategoryProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> getCategoty() async {}
+  Future<void> getCategoty() async {
+    try {
+      List<CategoryModel> category = await CategoryService().getCategory();
+      _category = category;
+    } catch (e) {
+      print(e);
+    }
+  }
 }

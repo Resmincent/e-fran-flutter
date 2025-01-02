@@ -1,4 +1,5 @@
 import 'package:e_fran/features/presentation/providers/auth_provider.dart';
+import 'package:e_fran/features/presentation/providers/category_provider.dart';
 import 'package:e_fran/features/presentation/providers/product_detail_provider.dart';
 import 'package:e_fran/features/presentation/providers/product_provider.dart';
 import 'package:e_fran/features/presentation/screen/cart_page_screen.dart';
@@ -27,6 +28,9 @@ void main() {
         ChangeNotifierProvider(
           create: (context) => ProductProvider(),
         ),
+        ChangeNotifierProvider(
+          create: (context) => CategoryProvider(),
+        )
       ],
       child: const MyApp(),
     ),
